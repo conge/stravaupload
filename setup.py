@@ -21,5 +21,5 @@ setup(name='StravaUpload',
       url='https://github.com/marthinsen/stravaupload',
       scripts=['stravaupload.py'],
       install_requires=[
-          'stravalib'
+          'stravalib','ConfigParser'
       ])
