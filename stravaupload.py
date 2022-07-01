@@ -69,10 +69,10 @@ def upload_file(strava, filename, activity_name, activity_description,
         activity_description = new_description
 
     # Try to upload
-    print 'Uploading...'
+    print('Uploading...')
     try:
         if test:
-            print 'Test mode: not actually uploading.'
+            print('Test mode: not actually uploading.')
         else:
             upload = strava.upload_activity(
                 activity_file=open(filename, 'r'),
@@ -83,8 +83,8 @@ def upload_file(strava, filename, activity_name, activity_description,
                 activity_type=activity_type
             )
     except exc.ActivityUploadFailed as error:
-        print 'An exception occurred: ',
-        print error
+        print('An exception occurred: '),
+        print (error)
         if may_exit:
             exit(1)
         return
@@ -94,18 +94,18 @@ def upload_file(strava, filename, activity_name, activity_description,
             exit(1)
         return
 
-    print 'Upload succeeded.'
+    print ('Upload succeeded.')
 
     if view:
-        print 'Waiting for activity...'
+        print ('Waiting for activity...')
 
         try:
             activity = upload.wait()
         except HTTPError as error:
             if error.args[0].startswith('401'):
-                print "You don't have permission to view this activity"
+                print ("You don't have permission to view this activity")
             else:
-                print 'HTTPError: ' + ', '.join(str(i) for i in error.args)
+                print ('HTTPError: ' + ', '.join(str(i) for i in error.args))
             return
 
         print 'Activity id: ' + str(activity.id)
@@ -143,7 +143,7 @@ def main():
     if config.has_option('access', 'token'):
         access_token = config.get('access', 'token')
     else:
-        print 'No access_token found in %s' % configfile
+        print ('No access_token found in %s' % configfile)
         sys.exit(0)
 
     # Get activity type
@@ -166,7 +166,7 @@ def main():
             sys.exit('No input files found')
         else:
             for i, filename in enumerate(filenames):
-                print i+1, "/", len(filenames)
+                (print i+1, "/", len(filenames))
                 upload_file(strava, filename, args.title, args.description,
                             activity_type, args.private, args.view, args.test,
                             may_exit=False)
