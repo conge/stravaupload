@@ -8,7 +8,7 @@ import sys
 import webbrowser
 from argparse import ArgumentParser
 from requests.exceptions import ConnectionError, HTTPError
-from ConfigParser import SafeConfigParser
+from configparser import SafeConfigParser
 
 from stravalib import Client, exc, model
 
