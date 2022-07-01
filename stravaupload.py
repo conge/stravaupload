@@ -89,7 +89,7 @@ def upload_file(strava, filename, activity_name, activity_description,
             exit(1)
         return
     except ConnectionError as error:
-        print 'No internet connection'
+        print('No internet connection')
         if may_exit:
             exit(1)
         return
@@ -108,7 +108,7 @@ def upload_file(strava, filename, activity_name, activity_description,
                 print ('HTTPError: ' + ', '.join(str(i) for i in error.args))
             return
 
-        print 'Activity id: ' + str(activity.id)
+        print('Activity id: ' + str(activity.id))
 
         url = 'https://www.strava.com/activities/' + str(activity.id)
         webbrowser.open_new_tab(url)
@@ -166,7 +166,7 @@ def main():
             sys.exit('No input files found')
         else:
             for i, filename in enumerate(filenames):
-                (print i+1, "/", len(filenames))
+                print (i+1, "/", len(filenames))
                 upload_file(strava, filename, args.title, args.description,
                             activity_type, args.private, args.view, args.test,
                             may_exit=False)
