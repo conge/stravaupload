@@ -8,7 +8,7 @@ import sys
 import webbrowser
 from argparse import ArgumentParser
 from requests.exceptions import ConnectionError, HTTPError
-from configparser import SafeConfigParser
+from configparser import ConfigParser
 
 from stravalib import Client, exc, model
 
@@ -137,7 +137,7 @@ def main():
     # Check if an access token is provided
     configfile = [os.path.expanduser('~/.stravaupload.cfg'),
                   '.stravaupload.cfg']
-    config = SafeConfigParser()
+    config = ConfigParser()
     config.read(configfile)
 
     if config.has_option('access', 'token'):
